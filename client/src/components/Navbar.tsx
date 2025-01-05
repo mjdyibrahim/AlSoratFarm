@@ -1,4 +1,4 @@
-import { useState } from "react";
+import * as React from "react";
 import { Link } from "wouter";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const mainLinks = [
     { href: "/", label: "Home" },
