@@ -10,170 +10,200 @@ import {
 
 // Farm areas with their descriptions
 const farmAreas = [
+  // Right Zone (Blue)
   {
-    id: "vet-area",
-    title: "Veterinary Area",
+    id: "vet-clinic",
+    title: "Vet Clinic",
     description: "Treatment area for animals and veterinary services.",
-    x: 600,
+    x: 650,
     y: 100,
-  },
-  {
-    id: "staff-residence",
-    title: "Staff Residence",
-    description: "Living quarters for farm staff.",
-    x: 600,
-    y: 150,
-  },
-  {
-    id: "equestrian-house",
-    title: "Equestrian Equipment",
-    description: "Storage for riding equipment and horse care supplies.",
-    x: 600,
-    y: 200,
-  },
-  {
-    id: "bathrooms",
-    title: "Bathrooms",
-    description: "Visitor and staff facilities.",
-    x: 600,
-    y: 250,
-  },
-  {
-    id: "goat-houses",
-    title: "Goat Houses",
-    description: "Home to our friendly goat population.",
-    x: 600,
-    y: 300,
-  },
-  {
-    id: "cow-house",
-    title: "Cow House",
-    description: "Shelter for our cattle.",
-    x: 600,
-    y: 350,
-  },
-  {
-    id: "donkey-house",
-    title: "Donkey House",
-    description: "Comfortable shelter for our donkeys.",
-    x: 600,
-    y: 400,
+    zone: "right"
   },
   {
     id: "sick-horse-house",
     title: "Sick Horse House",
     description: "Special care facility for horses requiring medical attention.",
-    x: 600,
-    y: 450,
+    x: 650,
+    y: 160,
+    zone: "right"
   },
   {
-    id: "maryanne-house",
-    title: "Maryanne's House & Garden",
-    description: "Residential area with garden and solar panel installation.",
+    id: "donkey-house",
+    title: "Donkey House",
+    description: "Comfortable shelter for our donkeys.",
+    x: 650,
+    y: 220,
+    zone: "right"
+  },
+  {
+    id: "cow-house",
+    title: "Cow House",
+    description: "Shelter for our cattle.",
+    x: 650,
+    y: 280,
+    zone: "right"
+  },
+  {
+    id: "goat-house",
+    title: "Goat House",
+    description: "Home to our friendly goat population.",
+    x: 650,
+    y: 340,
+    zone: "right"
+  },
+  {
+    id: "bathrooms",
+    title: "Bathrooms",
+    description: "Visitor and staff facilities.",
+    x: 650,
+    y: 400,
+    zone: "right"
+  },
+  {
+    id: "equestrian-house",
+    title: "Equestrian Equipment",
+    description: "Storage for riding equipment and horse care supplies.",
+    x: 650,
+    y: 460,
+    zone: "right"
+  },
+  {
+    id: "staff-residence",
+    title: "Staff Residence",
+    description: "Living quarters for farm staff.",
+    x: 650,
+    y: 520,
+    zone: "right"
+  },
+
+  // Left Zone (Green)
+  {
+    id: "horse-paddock",
+    title: "Horse Paddock",
+    description: "Horse paddock and running circle.",
     x: 200,
     y: 150,
+    zone: "left"
   },
   {
-    id: "experimental-plantation",
-    title: "Experimental Plantation",
-    description: "Area for testing new farming techniques and crops.",
+    id: "horse-running-circle",
+    title: "Horse Running Circle",
+    description: "Open space for horse exercise and training.",
     x: 200,
-    y: 275,
+    y: 250,
+    zone: "left"
   },
   {
     id: "staff-hq",
     title: "Staff HQ",
     description: "Main administrative building for farm operations.",
     x: 200,
-    y: 375,
+    y: 350,
+    zone: "left"
   },
   {
-    id: "horse-running-area",
-    title: "Horse Running Area",
-    description: "Open space for horse exercise and training.",
+    id: "experimental-plantation",
+    title: "Experimental Plantation",
+    description: "Area for testing new farming techniques and crops.",
     x: 200,
     y: 450,
+    zone: "left"
   },
   {
-    id: "naways-hq",
-    title: "Naways HQ",
-    description: "Administrative headquarters.",
-    x: 600,
-    y: 525,
-  },
-  {
-    id: "horse-paddock",
-    title: "Horse Paddock",
-    description: "Main living area for horses.",
+    id: "maryanne-house",
+    title: "Maryanne's House & Garden",
+    description: "Residential area with garden and solar panel installation.",
     x: 200,
-    y: 525,
-  },
+    y: 550,
+    zone: "left"
+  }
 ];
 
 export function FarmMap() {
   return (
     <TooltipProvider>
       <div className="relative w-full aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
-        {/* Base map SVG */}
         <svg
           viewBox="0 0 800 600"
           className="w-full h-full"
-          style={{ background: "#f3f4f6" }}
         >
-          {/* Farm outline */}
-          <path
-            d="M100 50 H700 V550 H100 Z"
-            fill="none"
-            stroke="hsl(var(--primary))"
-            strokeWidth="2"
-          />
+          {/* Background Zones */}
+          {/* Left Zone (Green) */}
+          <rect x="50" y="50" width="300" height="500" fill="#e2f5e2" />
+          {/* Central Pathway (Gray) */}
+          <rect x="350" y="50" width="100" height="500" fill="#f0f0f0" />
+          {/* Right Zone (Blue) */}
+          <rect x="450" y="50" width="300" height="500" fill="#e2f0f5" />
 
-          {/* Entrance path */}
+          {/* Zone Labels */}
+          <text x="200" y="30" className="text-sm font-medium" textAnchor="middle">
+            Left Zone
+          </text>
+          <text x="400" y="30" className="text-sm font-medium" textAnchor="middle">
+            Central
+          </text>
+          <text x="600" y="30" className="text-sm font-medium" textAnchor="middle">
+            Right Zone
+          </text>
+
+          {/* Entry Path */}
           <path
-            d="M700 300 H650"
-            stroke="hsl(var(--primary))"
+            d="M750 300 H700"
+            stroke="#666"
             strokeWidth="4"
             strokeDasharray="5,5"
           />
 
-          {/* Division lines */}
+          {/* Zone Borders */}
           <path
-            d="M400 50 V550"
-            stroke="hsl(var(--primary))"
+            d="M50 50 H750 V550 H50 V50"
+            fill="none"
+            stroke="#666"
+            strokeWidth="2"
+          />
+          <path
+            d="M350 50 V550"
+            stroke="#666"
             strokeWidth="1"
             strokeDasharray="5,5"
           />
           <path
-            d="M533 50 V550"
-            stroke="hsl(var(--primary))"
+            d="M450 50 V550"
+            stroke="#666"
             strokeWidth="1"
             strokeDasharray="5,5"
           />
-
-          {/* Area labels */}
-          <text x="450" y="30" className="text-sm fill-current" textAnchor="middle">
-            Main Farm Area
-          </text>
-          <text x="617" y="30" className="text-sm fill-current" textAnchor="middle">
-            Right Wing
-          </text>
-          <text x="250" y="30" className="text-sm fill-current" textAnchor="middle">
-            Left Wing
-          </text>
         </svg>
 
-        {/* Interactive hotspots */}
+        {/* Interactive Hotspots */}
         {farmAreas.map((area) => (
           <Tooltip key={area.id}>
             <TooltipTrigger asChild>
               <motion.div
-                className="absolute w-8 h-8 -ml-4 -mt-4 cursor-pointer"
-                style={{ left: area.x, top: area.y }}
+                className={`absolute w-8 h-8 -ml-4 -mt-4 cursor-pointer ${
+                  area.zone === 'left' 
+                    ? 'bg-green-500/80' 
+                    : area.zone === 'right' 
+                    ? 'bg-blue-500/80' 
+                    : 'bg-gray-500/80'
+                }`}
+                style={{
+                  left: area.x,
+                  top: area.y,
+                  borderRadius: '50%',
+                }}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
-              >
-                <div className="w-full h-full rounded-full bg-primary/80 animate-pulse" />
-              </motion.div>
+                animate={{
+                  opacity: [0.5, 1, 0.5],
+                }}
+                transition={{
+                  opacity: {
+                    duration: 2,
+                    repeat: Infinity,
+                  }
+                }}
+              />
             </TooltipTrigger>
             <TooltipContent>
               <Card>
