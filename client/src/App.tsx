@@ -7,6 +7,7 @@ import Farm from "@/pages/Farm";
 import Contact from "@/pages/Contact";
 import Events from "@/pages/Events";
 import InteractiveMap from "@/pages/InteractiveMap";
+import DayuseBooking from "@/pages/DayuseBooking";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/contact" component={Contact} />
           <Route path="/events" component={Events} />
           <Route path="/map" component={InteractiveMap} />
+          <Route path="/book-dayuse" component={DayuseBooking} />
         </Switch>
       </main>
       <Footer />

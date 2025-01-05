@@ -26,16 +26,21 @@ export function Navbar() {
           </div>
 
           {/* Desktop menu */}
-          <div className="hidden sm:flex sm:space-x-8 items-center">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium"
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="hidden sm:flex sm:items-center">
+            <div className="flex space-x-8 items-center">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <Button asChild className="bg-primary hover:bg-primary/90 ml-4">
+                <Link href="/book-dayuse">Book Dayuse</Link>
+              </Button>
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -66,6 +71,13 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/book-dayuse"
+              className="block px-3 py-2 text-base font-medium bg-primary text-primary-foreground hover:bg-primary/90"
+              onClick={() => setIsOpen(false)}
+            >
+              Book Dayuse
+            </Link>
           </div>
         </div>
       )}
