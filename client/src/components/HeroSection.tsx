@@ -14,7 +14,7 @@ export function HeroSection() {
           filter: 'brightness(0.6)'
         }}
       />
-      
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
           Come And Connect With The Earth And Animals
@@ -26,7 +26,7 @@ export function HeroSection() {
           <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
             <Link href="/farm">Explore Our Farm</Link>
           </Button>
-          <Button asChild size="lg" variant="outline" className="text-white border-white hover:bg-white/20">
+          <Button asChild size="lg" variant="outline" className="bg-white text-primary hover:bg-transparent hover:text-white border-white">
             <Link href="/contact">Contact Us</Link>
           </Button>
         </div>
