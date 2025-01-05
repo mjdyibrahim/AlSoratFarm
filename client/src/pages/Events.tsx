@@ -1,4 +1,4 @@
-import { useState } from "react";
+import * as React from "react";
 import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import type { SelectEvent } from "@db/schema";
 
 export default function Events() {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+  const [selectedDate, setSelectedDate] = React.useState<Date | undefined>(new Date());
 
   const { data: events, isLoading } = useQuery<SelectEvent[]>({
     queryKey: ["/api/events"],
@@ -46,10 +46,8 @@ export default function Events() {
                 mode="single"
                 selected={selectedDate}
                 onSelect={setSelectedDate}
+                className="rounded-md border"
                 modifiers={{ hasEvent: datesWithEvents }}
-                modifiersStyles={{
-                  hasEvent: { backgroundColor: "hsl(var(--primary) / 0.1)" },
-                }}
               />
             </CardContent>
           </Card>

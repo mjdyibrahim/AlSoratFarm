@@ -1,10 +1,10 @@
-import { useState } from "react";
+import * as React from "react";
 import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const links = [
     { href: "/", label: "Home" },
