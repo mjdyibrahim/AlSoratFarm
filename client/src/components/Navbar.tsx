@@ -10,6 +10,7 @@ export function Navbar() {
     { href: "/", label: "Home" },
     { href: "/farm", label: "Our Farm" },
     { href: "/events", label: "Events" },
+    { href: "/map", label: "Farm Map" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ];
