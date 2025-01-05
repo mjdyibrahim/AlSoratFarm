@@ -24,7 +24,7 @@ const activities = [
 ];
 
 const galleryPhotos = [
-  { url: "https://images.unsplash.com/photo-1586348323398-678d15d9e87f", alt: "Farm animals" },
+  { url: "https://images.unsplash.com/photo-1533318087102-b3ad366ed041", alt: "Baby goats at the farm" },
   { url: "https://images.unsplash.com/photo-1444858291040-58f756a3bdd6", alt: "Educational activities" },
   { url: "https://images.unsplash.com/photo-1654674611706-53157118a4a4", alt: "Organic farming" }
 ];
@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <div>
       <HeroSection />
-      
+
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">Our Activities</h2>
