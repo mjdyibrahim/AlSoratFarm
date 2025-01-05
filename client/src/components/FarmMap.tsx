@@ -15,64 +15,64 @@ const farmAreas = [
     id: "vet-clinic",
     title: "Vet Clinic",
     description: "Treatment area for animals and veterinary services.",
-    x: 650,
-    y: 100,
+    x: 450,
+    y: 650,
     zone: "right"
   },
   {
     id: "sick-horse-house",
     title: "Sick Horse House",
     description: "Special care facility for horses requiring medical attention.",
-    x: 650,
-    y: 160,
+    x: 400,
+    y: 650,
     zone: "right"
   },
   {
     id: "donkey-house",
     title: "Donkey House",
     description: "Comfortable shelter for our donkeys.",
-    x: 650,
-    y: 220,
+    x: 350,
+    y: 650,
     zone: "right"
   },
   {
     id: "cow-house",
     title: "Cow House",
     description: "Shelter for our cattle.",
-    x: 650,
-    y: 280,
+    x: 300,
+    y: 650,
     zone: "right"
   },
   {
     id: "goat-house",
     title: "Goat House",
     description: "Home to our friendly goat population.",
-    x: 650,
-    y: 340,
+    x: 250,
+    y: 650,
     zone: "right"
   },
   {
     id: "bathrooms",
     title: "Bathrooms",
     description: "Visitor and staff facilities.",
-    x: 650,
-    y: 400,
+    x: 200,
+    y: 650,
     zone: "right"
   },
   {
     id: "equestrian-house",
     title: "Equestrian Equipment",
     description: "Storage for riding equipment and horse care supplies.",
-    x: 650,
-    y: 460,
+    x: 150,
+    y: 650,
     zone: "right"
   },
   {
     id: "staff-residence",
     title: "Staff Residence",
     description: "Living quarters for farm staff.",
-    x: 650,
-    y: 520,
+    x: 100,
+    y: 650,
     zone: "right"
   },
 
@@ -81,7 +81,7 @@ const farmAreas = [
     id: "horse-paddock",
     title: "Horse Paddock",
     description: "Horse paddock and running circle.",
-    x: 200,
+    x: 450,
     y: 150,
     zone: "left"
   },
@@ -89,16 +89,16 @@ const farmAreas = [
     id: "horse-running-circle",
     title: "Horse Running Circle",
     description: "Open space for horse exercise and training.",
-    x: 200,
-    y: 250,
+    x: 350,
+    y: 150,
     zone: "left"
   },
   {
     id: "staff-hq",
     title: "Staff HQ",
     description: "Main administrative building for farm operations.",
-    x: 200,
-    y: 350,
+    x: 300,
+    y: 150,
     zone: "left"
   },
   {
@@ -106,15 +106,15 @@ const farmAreas = [
     title: "Experimental Plantation",
     description: "Area for testing new farming techniques and crops.",
     x: 200,
-    y: 450,
+    y: 150,
     zone: "left"
   },
   {
     id: "maryanne-house",
     title: "Maryanne's House & Garden",
     description: "Residential area with garden and solar panel installation.",
-    x: 200,
-    y: 550,
+    x: 100,
+    y: 150,
     zone: "left"
   }
 ];
@@ -124,54 +124,65 @@ export function FarmMap() {
     <TooltipProvider>
       <div className="relative w-full aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
         <svg
-          viewBox="0 0 800 600"
+          viewBox="0 0 800 800"
           className="w-full h-full"
+          style={{ transform: "rotate(90deg)", transformOrigin: "center" }}
         >
           {/* Background Zones */}
           {/* Left Zone (Green) */}
-          <rect x="50" y="50" width="300" height="500" fill="#e2f5e2" />
+          <rect x="50" y="50" width="500" height="300" fill="#e2f5e2" />
           {/* Central Pathway (Gray) */}
-          <rect x="350" y="50" width="100" height="500" fill="#f0f0f0" />
+          <rect x="50" y="350" width="500" height="100" fill="#f0f0f0" />
           {/* Right Zone (Blue) */}
-          <rect x="450" y="50" width="300" height="500" fill="#e2f0f5" />
+          <rect x="50" y="450" width="500" height="300" fill="#e2f0f5" />
+
+          {/* Section Dividers - Right Zone */}
+          {[1, 2, 3, 4, 5, 6, 7].map((_, i) => (
+            <path
+              key={`right-divider-${i}`}
+              d={`M${50 + ((i + 1) * 500) / 8} 450 V750`}
+              stroke="#666"
+              strokeWidth="1"
+              strokeDasharray="5,5"
+            />
+          ))}
+
+          {/* Section Dividers - Left Zone */}
+          {[1, 2, 3, 4].map((_, i) => (
+            <path
+              key={`left-divider-${i}`}
+              d={`M${50 + ((i + 1) * 500) / 5} 50 V350`}
+              stroke="#666"
+              strokeWidth="1"
+              strokeDasharray="5,5"
+            />
+          ))}
 
           {/* Zone Labels */}
-          <text x="200" y="30" className="text-sm font-medium" textAnchor="middle">
+          <text x="300" y="30" className="text-sm font-medium" textAnchor="middle" transform="rotate(-90 300 30)">
             Left Zone
           </text>
-          <text x="400" y="30" className="text-sm font-medium" textAnchor="middle">
+          <text x="300" y="400" className="text-sm font-medium" textAnchor="middle" transform="rotate(-90 300 400)">
             Central
           </text>
-          <text x="600" y="30" className="text-sm font-medium" textAnchor="middle">
+          <text x="300" y="600" className="text-sm font-medium" textAnchor="middle" transform="rotate(-90 300 600)">
             Right Zone
           </text>
 
-          {/* Entry Path */}
+          {/* Entry Door */}
           <path
-            d="M750 300 H700"
+            d="M50 400 H100"
             stroke="#666"
             strokeWidth="4"
             strokeDasharray="5,5"
           />
 
-          {/* Zone Borders */}
+          {/* Main Border */}
           <path
-            d="M50 50 H750 V550 H50 V50"
+            d="M50 50 H550 V750 H50 V50"
             fill="none"
             stroke="#666"
             strokeWidth="2"
-          />
-          <path
-            d="M350 50 V550"
-            stroke="#666"
-            strokeWidth="1"
-            strokeDasharray="5,5"
-          />
-          <path
-            d="M450 50 V550"
-            stroke="#666"
-            strokeWidth="1"
-            strokeDasharray="5,5"
           />
         </svg>
 
