@@ -9,6 +9,7 @@ export function Navbar() {
   const links = [
     { href: "/", label: "Home" },
     { href: "/farm", label: "Our Farm" },
+    { href: "/events", label: "Events" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ];

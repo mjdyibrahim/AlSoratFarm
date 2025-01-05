@@ -5,6 +5,7 @@ import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Farm from "@/pages/Farm";
 import Contact from "@/pages/Contact";
+import Events from "@/pages/Events";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/about" component={About} />
           <Route path="/farm" component={Farm} />
           <Route path="/contact" component={Contact} />
+          <Route path="/events" component={Events} />
         </Switch>
       </main>
       <Footer />
