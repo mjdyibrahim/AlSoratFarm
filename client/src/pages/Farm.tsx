@@ -2,7 +2,7 @@ import { PhotoGallery } from "@/components/PhotoGallery";
 import { Card, CardContent } from "@/components/ui/card";
 
 const farmPhotos = [
-  { url: "https://images.unsplash.com/photo-1586348323398-678d15d9e87f", alt: "Farm animals" },
+  { url: "https://images.unsplash.com/photo-1533318087102-b3ad366ed041", alt: "Farm animals" },
   { url: "https://images.unsplash.com/photo-1723581209173-48e0de88a83d", alt: "Horses" },
   { url: "https://images.unsplash.com/photo-1484557985045-edf25e08da73", alt: "Educational activities" },
 ];
