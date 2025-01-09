@@ -19,6 +19,7 @@ export function Navbar() {
 
   const dropdownLinks = [
     { href: "/farm", label: "Our Farm" },
+    { href: "/animals", label: "Meet Our Animals" },
     { href: "/story", label: "Farm Story" },
     { href: "/map", label: "Farm Map" },
     { href: "/about", label: "About" },

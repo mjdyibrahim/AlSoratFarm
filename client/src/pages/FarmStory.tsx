@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const timelineEvents = [
   {
     id: "1",
-    year: 2005,
+    year: 2000,
     title: "The Beginning",
     description: "Al Sorat Farm was established as a small educational center with a focus on connecting people with nature and animals.",
     category: "milestone" as const,
@@ -57,7 +57,7 @@ export default function FarmStory() {
             transition={{ delay: 0.2 }}
             className="text-xl text-gray-600 max-w-3xl mx-auto"
           >
-            Since 2005, Al Sorat Farm has been a sanctuary for learning, growth, and connection with nature.
+            Since 2000, Al Sorat Farm has been a sanctuary for learning, growth, and connection with nature.
             Explore our history and the milestones that have shaped our community.
           </motion.p>
         </div>
