@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import { Link } from "wouter";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const mainLinks = [
     { href: "/", label: "Home" },
@@ -20,6 +21,7 @@ export function Navbar() {
   const dropdownLinks = [
     { href: "/farm", label: "Our Farm" },
     { href: "/animals", label: "Meet Our Animals" },
+    { href: "/virtual-tour", label: "Virtual Tour" },
     { href: "/story", label: "Farm Story" },
     { href: "/map", label: "Farm Map" },
     { href: "/about", label: "About" },
