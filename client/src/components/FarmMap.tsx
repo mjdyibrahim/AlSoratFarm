@@ -8,6 +8,12 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+const FARM_IMAGE_RATIO = 552 / 1626;
+interface FarmMapProps {
+  className?: string;
+}
+const FARM_IMAGE_URL = "/images/AlSoratFarm.jpg";
+
 // Farm areas with their descriptions
 const farmAreas = [
   {
@@ -62,7 +68,8 @@ const farmAreas = [
   {
     id: "sick-horse-house",
     title: "Sick Horse House",
-    description: "Special care facility for horses requiring medical attention.",
+    description:
+      "Special care facility for horses requiring medical attention.",
     x: 600,
     y: 450,
   },
@@ -113,56 +120,22 @@ const farmAreas = [
 export function FarmMap() {
   return (
     <TooltipProvider>
-      <div className="relative w-full aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
-        {/* Base map SVG */}
-        <svg
-          viewBox="0 0 800 600"
-          className="w-full h-full"
-          style={{ background: "#f3f4f6" }}
-        >
-          {/* Farm outline */}
-          <path
-            d="M100 50 H700 V550 H100 Z"
-            fill="none"
-            stroke="hsl(var(--primary))"
-            strokeWidth="2"
-          />
+      {/* 
+        This container enforces the correct aspect ratio to match the image. 
+        If you know the exact ratio, you can do something like aspect-[552/1626].
+      */}
+      <div
+        className="relative w-full"
+        style={{ aspectRatio: `${FARM_IMAGE_RATIO}` }}
+      >
+        {/* The actual farm satellite image as a background */}
+        <img
+          src={FARM_IMAGE_URL}
+          alt="Al Sorat Farm Satellite View"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
 
-          {/* Entrance path */}
-          <path
-            d="M700 300 H650"
-            stroke="hsl(var(--primary))"
-            strokeWidth="4"
-            strokeDasharray="5,5"
-          />
-
-          {/* Division lines */}
-          <path
-            d="M400 50 V550"
-            stroke="hsl(var(--primary))"
-            strokeWidth="1"
-            strokeDasharray="5,5"
-          />
-          <path
-            d="M533 50 V550"
-            stroke="hsl(var(--primary))"
-            strokeWidth="1"
-            strokeDasharray="5,5"
-          />
-
-          {/* Area labels */}
-          <text x="450" y="30" className="text-sm fill-current" textAnchor="middle">
-            Main Farm Area
-          </text>
-          <text x="617" y="30" className="text-sm fill-current" textAnchor="middle">
-            Right Wing
-          </text>
-          <text x="250" y="30" className="text-sm fill-current" textAnchor="middle">
-            Left Wing
-          </text>
-        </svg>
-
-        {/* Interactive hotspots */}
+        {/* Now we place the hotspots absolutely on top of the image */}
         {farmAreas.map((area) => (
           <Tooltip key={area.id}>
             <TooltipTrigger asChild>
@@ -172,6 +145,7 @@ export function FarmMap() {
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
               >
+                {/* You can style this however you like */}
                 <div className="w-full h-full rounded-full bg-primary/80 animate-pulse" />
               </motion.div>
             </TooltipTrigger>
