@@ -12,7 +12,7 @@ const FARM_IMAGE_RATIO = 552 / 1626;
 interface FarmMapProps {
   className?: string;
 }
-const FARM_IMAGE_URL = import.meta.env.BASE_URL + "images/AlSoratFarm.jpg";
+const FARM_IMAGE_URL = "/images/AlSoratFarm.jpg";
 
 // Farm areas with their descriptions
 const farmAreas = [
