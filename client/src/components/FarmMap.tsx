@@ -20,100 +20,100 @@ const farmAreas = [
     id: "vet-area",
     title: "Veterinary Area",
     description: "Treatment area for animals and veterinary services.",
-    x: 600,
-    y: 100,
+    x: "80%",
+    y: "90%",
   },
   {
     id: "staff-residence",
     title: "Staff Residence",
     description: "Living quarters for farm staff.",
-    x: 600,
-    y: 150,
+    x: "80%",
+    y: "85%",
   },
   {
     id: "equestrian-house",
     title: "Equestrian Equipment",
     description: "Storage for riding equipment and horse care supplies.",
-    x: 600,
-    y: 200,
+    x: "83%",
+    y: "81%",
   },
   {
     id: "bathrooms",
     title: "Bathrooms",
     description: "Visitor and staff facilities.",
-    x: 600,
-    y: 250,
+    x: "85%",
+    y: "79%",
   },
   {
     id: "goat-houses",
     title: "Goat Houses",
     description: "Home to our friendly goat population.",
-    x: 600,
-    y: 300,
+    x: "80%",
+    y: "75%",
   },
   {
     id: "cow-house",
     title: "Cow House",
     description: "Shelter for our cattle.",
-    x: 600,
-    y: 350,
+    x: "80%",
+    y: "62%",
   },
   {
     id: "donkey-house",
     title: "Donkey House",
     description: "Comfortable shelter for our donkeys.",
-    x: 600,
-    y: 400,
+    x: "80%",
+    y: "65%",
   },
   {
     id: "sick-horse-house",
     title: "Sick Horse House",
     description:
       "Special care facility for horses requiring medical attention.",
-    x: 600,
-    y: 450,
+    x: "80%",
+    y: "57%",
   },
   {
     id: "maryanne-house",
     title: "Maryanne's House & Garden",
     description: "Residential area with garden and solar panel installation.",
-    x: 200,
-    y: 150,
+    x: "15%",
+    y: "90%",
   },
   {
     id: "experimental-plantation",
     title: "Experimental Plantation",
     description: "Area for testing new farming techniques and crops.",
-    x: 200,
-    y: 275,
+    x: "20%",
+    y: "70%",
   },
   {
     id: "staff-hq",
     title: "Staff HQ",
     description: "Main administrative building for farm operations.",
-    x: 200,
-    y: 375,
+    x: "50%",
+    y: "65%",
   },
   {
     id: "horse-running-area",
     title: "Horse Running Area",
     description: "Open space for horse exercise and training.",
-    x: 200,
-    y: 450,
+    x: "50%",
+    y: "55%",
   },
   {
     id: "naways-hq",
     title: "Naways HQ",
     description: "Administrative headquarters.",
-    x: 600,
-    y: 525,
+    x: "80%",
+    y: "33%",
   },
   {
     id: "horse-paddock",
     title: "Horse Paddock",
     description: "Main living area for horses.",
-    x: 200,
-    y: 525,
+    x: "20%",
+    y: "40%",
   },
 ];
 
@@ -125,8 +125,7 @@ export function FarmMap() {
         If you know the exact ratio, you can do something like aspect-[552/1626].
       */}
       <div
-        className="relative w-full"
-        style={{ aspectRatio: `${FARM_IMAGE_RATIO}` }}
+        className="relative w-full aspect-[552/1626] overflow-hidden"
       >
         {/* The actual farm satellite image as a background */}
         <img
