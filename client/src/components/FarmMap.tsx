@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "wouter";
 import {
   Tooltip,
   TooltipContent,
@@ -121,10 +121,10 @@ const farmAreas = [
 ];
 
 export function FarmMap() {
-  const navigate = useNavigate();
+  const [_, setLocation] = useLocation();
 
   const handleAreaClick = (areaId: string) => {
-    navigate(`/virtual-tour?location=${areaId}`);
+    setLocation(`/virtual-tour?location=${areaId}`);
   };
 
   return (
