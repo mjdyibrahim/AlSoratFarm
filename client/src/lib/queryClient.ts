@@ -4,7 +4,8 @@ export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       queryFn: async ({ queryKey }) => {
-        const res = await fetch(queryKey[0] as string, {
+        const url = `${API_BASE_URL}${queryKey[0]}`;
+        const res = await fetch(url, {
           credentials: "include",
         });
 

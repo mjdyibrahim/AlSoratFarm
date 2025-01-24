@@ -7,6 +7,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 
+// Added API configuration
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+
+
 const formSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
   lastName: z.string().min(2, "Last name must be at least 2 characters"),
@@ -28,14 +32,34 @@ export function ContactForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // In a real app, you would send this to your backend
-    console.log(values);
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const response = await fetch(`${API_BASE_URL}/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you as soon as possible.",
+      });
+      form.reset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Error sending message",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    }
   }
 
   return (
@@ -69,7 +93,7 @@ export function ContactForm() {
             )}
           />
         </div>
-        
+
         <FormField
           control={form.control}
           name="email"
@@ -83,7 +107,7 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        
+
         <FormField
           control={form.control}
           name="phone"
@@ -97,7 +121,7 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        
+
         <FormField
           control={form.control}
           name="message"
