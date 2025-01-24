@@ -7,7 +7,7 @@ export function HeroSection() {
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1502900166467-e5fe8d43f857")',
+          backgroundImage: 'url("/images/Driveway_Back_View.jpeg")',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',

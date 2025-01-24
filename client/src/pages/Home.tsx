@@ -6,27 +6,27 @@ const activities = [
   {
     title: "Animal Interaction",
     description: "Connect with our friendly farm animals including goats, horses, and donkeys.",
-    imageUrl: "https://images.unsplash.com/photo-1535907309959-db0f3e78aa54",
+    imageUrl: "/images/Horses_From_Garden.jpeg",
     link: "/farm#animals"
   },
   {
     title: "Educational Programs",
     description: "School visits and hands-on learning experiences for all ages.",
-    imageUrl: "https://images.unsplash.com/photo-1484557985045-edf25e08da73",
+    imageUrl: "/images/Tamer_Son_Horses_2.jpg",
     link: "/farm#education"
   },
   {
     title: "Organic Farming",
     description: "Experience sustainable farming practices and fresh produce.",
-    imageUrl: "https://images.unsplash.com/photo-1719957770295-82515e051011",
+    imageUrl: "/images/Plantation_GreenHouse.jpeg",
     link: "/farm#farming"
   }
 ];
 
 const galleryPhotos = [
-  { url: "https://images.unsplash.com/photo-1533318087102-b3ad366ed041", alt: "Baby goats at the farm" },
-  { url: "https://images.unsplash.com/photo-1444858291040-58f756a3bdd6", alt: "Educational activities" },
-  { url: "https://images.unsplash.com/photo-1654674611706-53157118a4a4", alt: "Organic farming" }
+  { url: "/images/Calf_Buffalo_FADA_Dahab.jpeg", alt: "Baby buffalo at the farm" },
+  { url: "/images/Tamer_Son_Horses_5.jpg", alt: "Educational activities with horses" },
+  { url: "/images/Cabbage_Plantation.jpeg", alt: "Organic farming" }
 ];
 
 export default function Home() {
