@@ -2,9 +2,9 @@ import { PhotoGallery } from "@/components/PhotoGallery";
 import { Card, CardContent } from "@/components/ui/card";
 
 const farmPhotos = [
-  { url: "https://images.unsplash.com/photo-1533318087102-b3ad366ed041", alt: "Farm animals" },
-  { url: "https://images.unsplash.com/photo-1723581209173-48e0de88a83d", alt: "Horses" },
-  { url: "https://images.unsplash.com/photo-1484557985045-edf25e08da73", alt: "Educational activities" },
+  { url: "images/Dog_Kate.jpeg", alt: "Farm animals" },
+  { url: "images/Horses_From_Garden.jpeg", alt: "Horses" },
+  { url: "images/Swing_Horses.jpeg", alt: "Educational activities" },
 ];
 
 export default function Farm() {

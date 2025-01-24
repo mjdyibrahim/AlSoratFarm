@@ -8,7 +8,9 @@ import { useQuery } from "@tanstack/react-query";
 import type { SelectEvent } from "@db/schema";
 
 export default function Events() {
-  const [selectedDate, setSelectedDate] = React.useState<Date | undefined>(new Date());
+  const [selectedDate, setSelectedDate] = React.useState<Date | undefined>(
+    new Date(),
+  );
 
   const { data: events, isLoading } = useQuery<SelectEvent[]>({
     queryKey: ["/api/events"],
@@ -34,7 +36,7 @@ export default function Events() {
   return (
     <div className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-bold text-center mb-12">Farm Events</h1>
+        <h1 className="text-4xl font-bold text-center mb-12">Farm Agenda</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <Card>
@@ -71,12 +73,17 @@ export default function Events() {
                         <CardContent className="pt-6">
                           <div className="flex justify-between items-start mb-4">
                             <div>
-                              <h3 className="text-lg font-semibold">{event.title}</h3>
+                              <h3 className="text-lg font-semibold">
+                                {event.title}
+                              </h3>
                               <p className="text-sm text-gray-600">
                                 {format(new Date(event.eventDate), "h:mm a")} -{" "}
                                 {format(
-                                  new Date(new Date(event.eventDate).getTime() + event.duration * 60000),
-                                  "h:mm a"
+                                  new Date(
+                                    new Date(event.eventDate).getTime() +
+                                      event.duration * 60000,
+                                  ),
+                                  "h:mm a",
                                 )}
                               </p>
                             </div>
@@ -84,7 +91,9 @@ export default function Events() {
                               ${(event.price / 100).toFixed(2)}
                             </Badge>
                           </div>
-                          <p className="text-gray-600 mb-4">{event.description}</p>
+                          <p className="text-gray-600 mb-4">
+                            {event.description}
+                          </p>
                           <div className="flex justify-between items-center">
                             <p className="text-sm text-gray-500">
                               {event.capacity} spots available
@@ -96,7 +105,9 @@ export default function Events() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-gray-600">No events scheduled for this date.</p>
+                  <p className="text-gray-600">
+                    No events scheduled for this date.
+                  </p>
                 )}
               </CardContent>
             </Card>

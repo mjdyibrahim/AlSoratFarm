@@ -12,7 +12,7 @@ const activities = [
   {
     title: "Educational Programs",
     description: "School visits and hands-on learning experiences for all ages.",
-    imageUrl: "/images/Tamer_Son_Horses_2.jpg",
+    imageUrl: "/images/Swing_Horses.jpeg",
     link: "/farm#education"
   },
   {
@@ -25,7 +25,7 @@ const activities = [
 
 const galleryPhotos = [
   { url: "/images/Calf_Buffalo_FADA_Dahab.jpeg", alt: "Baby buffalo at the farm" },
-  { url: "/images/Tamer_Son_Horses_5.jpg", alt: "Educational activities with horses" },
+  { url: "/images/Tamer_Son_Horses_2.jpg", alt: "Educational activities with horses" },
   { url: "/images/Cabbage_Plantation.jpeg", alt: "Organic farming" }
 ];
 

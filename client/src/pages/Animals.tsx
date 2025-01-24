@@ -6,7 +6,7 @@ const animalProfiles = [
     name: "Farm Goats",
     species: "Goat",
     description: "Our friendly goats are some of the cutest creatures on the planet. We always have baby goats around for visitors to play with and cuddle.",
-    imageUrl: "https://images.unsplash.com/photo-1533318087102-b3ad366ed041",
+    imageUrl: "images/Sheep_House.jpeg",
     traits: ["Playful", "Social", "Friendly", "Great with kids"],
     funFacts: [
       {
@@ -28,7 +28,7 @@ const animalProfiles = [
     name: "Farm Horses",
     species: "Horse",
     description: "Our well-trained horses are perfect for both riding lessons and trail adventures. All are well-fed and cared for with proper equipment.",
-    imageUrl: "https://images.unsplash.com/photo-1723581209173-48e0de88a83d",
+    imageUrl: "images/Horses_From_Garden.jpeg",
     traits: ["Well-trained", "Gentle", "Trail-ready", "Family-friendly"],
     funFacts: [
       {
@@ -50,7 +50,7 @@ const animalProfiles = [
     name: "Farm Dogs",
     species: "Dog",
     description: "Our pack of about 14 dogs ranges from small terriers to Great Danes, all chosen for their friendly nature.",
-    imageUrl: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e",
+    imageUrl: "images/Dog_King_Rottweiler.jpeg",
     traits: ["Diverse breeds", "Friendly", "Well-socialized", "Family-oriented"],
     funFacts: [
       {
@@ -72,7 +72,7 @@ const animalProfiles = [
     name: "Farm Donkeys",
     species: "Donkey",
     description: "Our donkeys provide both companionship and help with farm work. They're gentle souls with big personalities.",
-    imageUrl: "https://images.unsplash.com/photo-1598974357801-cbca100e65d3",
+    imageUrl: "images/Donkey_House.jpeg",
     traits: ["Hard-working", "Gentle", "Smart", "Good with visitors"],
     funFacts: [
       {

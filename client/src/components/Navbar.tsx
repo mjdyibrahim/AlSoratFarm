@@ -15,15 +15,15 @@ export function Navbar() {
 
   const mainLinks = [
     { href: "/", label: "Home" },
-    { href: "/events", label: "Events" },
+    { href: "/events", label: "Agenda" },
   ];
 
   const dropdownLinks = [
     { href: "/farm", label: "Our Farm" },
-    { href: "/animals", label: "Meet Our Animals" },
-    { href: "/virtual-tour", label: "Virtual Tour" },
     { href: "/story", label: "Farm Story" },
     { href: "/map", label: "Farm Map" },
+    { href: "/virtual-tour", label: "Virtual Tour" },
+    { href: "/animals", label: "Meet Our Animals" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ];
@@ -34,7 +34,9 @@ export function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <span className="text-2xl font-bold text-primary">Al Sorat Farm</span>
+              <span className="text-2xl font-bold text-primary">
+                Al Sorat Farm
+              </span>
             </Link>
           </div>
 
@@ -58,10 +60,7 @@ export function Navbar() {
                 <DropdownMenuContent align="end">
                   {dropdownLinks.map((link) => (
                     <DropdownMenuItem key={link.href} asChild>
-                      <Link
-                        href={link.href}
-                        className="w-full"
-                      >
+                      <Link href={link.href} className="w-full">
                         {link.label}
                       </Link>
                     </DropdownMenuItem>
@@ -83,7 +82,11 @@ export function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </Button>
           </div>
         </div>
