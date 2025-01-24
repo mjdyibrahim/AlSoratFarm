@@ -14,63 +14,70 @@ import { PannellumViewer } from "./PannellumViewer";
 // Farm locations with their panoramic images and descriptions
 const tourLocations = [
   {
-    id: "entrance",
-    title: "Farm Entrance",
-    description: "Welcome to Al Sorat Farm! This is our main entrance area where your journey begins.",
-    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef",
-    hotspots: [
-      {
-        pitch: 0,
-        yaw: 110,
-        text: "Path to the stables",
-      },
-      {
-        pitch: -5,
-        yaw: -55,
-        text: "Main reception area",
-      },
-    ],
+    id: "vet-area",
+    title: "Veterinary Area",
+    description: "Treatment area for animals and veterinary services.",
+    image: "/images/MainHouse_Outdoors_Service.jpeg",
+    hotspots: [],
   },
   {
-    id: "stables",
-    title: "Horse Stables",
-    description: "Our well-maintained stables house our friendly horses and provide a comfortable environment for them.",
-    image: "https://images.unsplash.com/photo-1553791685-0a05355314b4",
-    hotspots: [
-      {
-        pitch: 0,
-        yaw: 150,
-        text: "Training area",
-      },
-      {
-        pitch: -10,
-        yaw: -80,
-        text: "Equipment storage",
-      },
-    ],
+    id: "staff-residence",
+    title: "Staff Residence",
+    description: "Living quarters for farm staff.",
+    image: "/images/MainHouse_Side.jpeg",
+    hotspots: [],
   },
   {
-    id: "garden",
-    title: "Organic Garden",
-    description: "Experience our thriving organic garden where we grow fresh produce and conduct farming experiments.",
-    image: "https://images.unsplash.com/photo-1444392061186-9fc38f84f726",
-    hotspots: [
-      {
-        pitch: -5,
-        yaw: 110,
-        text: "Vegetable patches",
-      },
-      {
-        pitch: 0,
-        yaw: -45,
-        text: "Herb garden",
-      },
-    ],
+    id: "equestrian-house",
+    title: "Equestrian Equipment",
+    description: "Storage for riding equipment and horse care supplies.",
+    image: "/images/Horses_Circle_Training_Donkey_Wagon.jpeg",
+    hotspots: [],
   },
+  {
+    id: "donkey-house",
+    title: "Donkey House",
+    description: "Comfortable shelter for our donkeys.",
+    image: "/images/Donkey_House.jpeg",
+    hotspots: [],
+  },
+  {
+    id: "maryanne-house",
+    title: "Maryanne's House & Garden",
+    description: "Residential area with garden and solar panel installation.",
+    image: "/images/MainHouse_Garden.jpeg",
+    hotspots: [],
+  },
+  {
+    id: "experimental-plantation",
+    title: "Experimental Plantation",
+    description: "Area for testing new farming techniques and crops.",
+    image: "/images/Plantation_GreenHouse.jpeg",
+    hotspots: [],
+  },
+  {
+    id: "naways-hq",
+    title: "Naways HQ",
+    description: "Administrative headquarters.",
+    image: "/images/NawaysHQ_House.jpeg",
+    hotspots: [],
+  },
+  {
+    id: "horse-paddock",
+    title: "Horse Paddock",
+    description: "Main living area for horses.",
+    image: "/images/Horses_From_Garden.jpeg",
+    hotspots: [],
+  }
 ];
 
 export function VirtualTour() {
-  const [currentLocationIndex, setCurrentLocationIndex] = React.useState(0);
+  const [searchParams] = React.useState(new URLSearchParams(window.location.search));
+  const locationId = searchParams.get('location');
+  const initialIndex = locationId 
+    ? tourLocations.findIndex(loc => loc.id === locationId)
+    : 0;
+  const [currentLocationIndex, setCurrentLocationIndex] = React.useState(initialIndex !== -1 ? initialIndex : 0);
   const currentLocation = tourLocations[currentLocationIndex];
 
   const goToNextLocation = () => {

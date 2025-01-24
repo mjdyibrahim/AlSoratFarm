@@ -1,6 +1,9 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { MapPin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import {
   Tooltip,
   TooltipContent,
@@ -118,6 +121,12 @@ const farmAreas = [
 ];
 
 export function FarmMap() {
+  const navigate = useNavigate();
+
+  const handleAreaClick = (areaId: string) => {
+    navigate(`/virtual-tour?location=${areaId}`);
+  };
+
   return (
     <TooltipProvider>
       {/* 
@@ -141,13 +150,13 @@ export function FarmMap() {
           <Tooltip key={area.id}>
             <TooltipTrigger asChild>
               <motion.div
-                className="absolute w-8 h-8 -ml-4 -mt-4 cursor-pointer"
+                className="absolute -ml-4 -mt-8 cursor-pointer"
                 style={{ left: area.x, top: area.y }}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
+                onClick={() => handleAreaClick(area.id)}
               >
-                {/* You can style this however you like */}
-                <div className="w-full h-full rounded-full bg-primary/80 animate-pulse" />
+                <MapPin className="h-8 w-8 text-primary animate-bounce" />
               </motion.div>
             </TooltipTrigger>
             <TooltipContent>
