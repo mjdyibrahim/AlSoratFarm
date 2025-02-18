@@ -8,18 +8,22 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Al Sorat Farm</h3>
             <p className="text-sm">
-              Educational and recreational center welcoming students and families to connect with nature and animals.
+              Educational and recreational center welcoming students and
+              families to connect with nature and animals.
             </p>
           </div>
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <div className="space-y-2">
-              <a href="tel:+201222118386" className="flex items-center gap-2 text-sm hover:underline">
+              <a
+                href="tel:+201222118386"
+                className="flex items-center gap-2 text-sm hover:underline"
+              >
                 <Phone className="h-4 w-4" />
                 +20 (122) 211-8386
               </a>
               <a
-                href="https://www.facebook.com/ruralwellnessinitiativeegypt"
+                href="https://www.facebook.com/alsoratfarm"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-sm hover:underline"
@@ -32,12 +36,17 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Hours</h3>
             <p className="text-sm">
-              Available anytime via Phone, Facebook Message, WhatsApp, and Text
+              Hours of Operation: 9:30 am to Sunset every day. <br> <br></br>Available anytime
+              via Facebook Messenger, WhatsApp, and text. Available via phone
+              from 9 am to 8 pm.
             </p>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-sm text-center">
-          <p>&copy; {new Date().getFullYear()} Al Sorat Farm. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Al Sorat Farm. All rights
+            reserved.
+          </p>
         </div>
       </div>
     </footer>

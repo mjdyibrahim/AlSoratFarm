@@ -18,32 +18,33 @@ export default function Contact() {
                     <Phone className="h-5 w-5 text-primary" />
                     <div>
                       <p className="font-medium">Phone</p>
-                      <a href="tel:+201222118386" className="text-gray-600 hover:text-primary">
+                      <a
+                        href="tel:+201222118386"
+                        className="text-gray-600 hover:text-primary"
+                      >
                         +20 (122) 211-8386
                       </a>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <Facebook className="h-5 w-5 text-primary" />
                     <div>
                       <p className="font-medium">Facebook</p>
-                      <a 
-                        href="https://www.facebook.com/ruralwellnessinitiativeegypt"
+                      <a
+                        href="https://www.facebook.com/AlSoratFarm/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-gray-600 hover:text-primary"
                       >
-                        Rural Wellness Initiative Egypt
+                        Al Sorat Farm
                       </a>
                     </div>
                   </div>
 
                   <div className="pt-6">
                     <h3 className="font-medium mb-2">Hours of Operation</h3>
-                    <p className="text-gray-600">
-                      Available anytime via Phone, Facebook Message, WhatsApp, and Text
-                    </p>
+                    <p className="text-gray-600">9:30 am to Sunset every day</p>
                   </div>
                 </div>
               </CardContent>
@@ -53,7 +54,9 @@ export default function Contact() {
           <div>
             <Card>
               <CardContent className="pt-6">
-                <h2 className="text-2xl font-semibold mb-6">Send us a Message</h2>
+                <h2 className="text-2xl font-semibold mb-6">
+                  Send us a Message
+                </h2>
                 <ContactForm />
               </CardContent>
             </Card>

@@ -17,7 +17,7 @@ export function HeroSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-          Come And Connect With The Earth And Animals
+          Come Connect With The Earth And Animals.
         </h1>
         <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
           Experience the joy of connecting with nature through our educational and recreational activities at Al Sorat Farm.
