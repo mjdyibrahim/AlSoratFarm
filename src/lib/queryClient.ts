@@ -1,4 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
+import { API_BASE_URL } from "./config";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,8 +22,8 @@ export const queryClient = new QueryClient({
       },
       refetchInterval: false,
       refetchOnWindowFocus: false,
-      staleTime: Infinity,
-      retry: false,
+      retry: 1,
+      staleTime: 5 * 60 * 1000, // 5 minutes
     },
     mutations: {
       retry: false,

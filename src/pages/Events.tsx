@@ -5,7 +5,22 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
-import type { SelectEvent } from "@db/schema";
+
+// Define the event type locally
+interface SelectEvent {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  time: string;
+  location: string;
+  image_url: string;
+  created_at: string;
+  eventDate: string;
+  duration: number;
+  price: number;
+  capacity: number;
+}
 
 export default function Events() {
   const [selectedDate, setSelectedDate] = React.useState<Date | undefined>(
@@ -18,14 +33,19 @@ export default function Events() {
 
   // Filter events for the selected date
   const selectedDateEvents = events?.filter((event) => {
-    if (!selectedDate) return false;
     const eventDate = new Date(event.eventDate);
     return (
-      eventDate.getDate() === selectedDate.getDate() &&
-      eventDate.getMonth() === selectedDate.getMonth() &&
-      eventDate.getFullYear() === selectedDate.getFullYear()
+      eventDate.getDate() === selectedDate?.getDate() &&
+      eventDate.getMonth() === selectedDate?.getMonth() &&
+      eventDate.getFullYear() === selectedDate?.getFullYear()
     );
   });
+
+  // Get all dates with events for the calendar
+  const dates = React.useMemo(() => {
+    if (!events) return [];
+    return events.map((event) => new Date(event.eventDate));
+  }, [events]);
 
   // Get dates with events for calendar highlighting
   const datesWithEvents = events?.reduce((dates: Date[], event) => {

@@ -1,23 +1,40 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import themePlugin from "@replit/vite-plugin-shadcn-theme-json";
-import path, { dirname } from "path";
-import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
-import { fileURLToPath } from "url";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), runtimeErrorOverlay(), themePlugin()],
+  plugins: [react()],
   resolve: {
     alias: {
-      "@db": path.resolve(__dirname, "db"),
-      "@": path.resolve(__dirname, "client", "src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
-  root: path.resolve(__dirname, "client"),
-  build: {
-    outDir: path.resolve(__dirname, "dist"),
-    emptyOutDir: true,
+  css: {
+    postcss: './postcss.config.js',
   },
-});
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    emptyOutDir: true,
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['@radix-ui/react-alert-dialog', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-label', '@radix-ui/react-navigation-menu', '@radix-ui/react-select', '@radix-ui/react-slot', '@radix-ui/react-tabs', '@radix-ui/react-toast'],
+        },
+      },
+    },
+  },
+  server: {
+    port: 5173,
+    proxy: process.env.NODE_ENV === 'development' ? {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+      },
+    } : undefined,
+  },
+  base: '/',
+}); 
