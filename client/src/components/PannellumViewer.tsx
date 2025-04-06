@@ -20,6 +20,7 @@ interface PannellumViewerProps {
   hfov?: number;
   hotSpots?: HotSpot[];
   onLoad?: () => void;
+  onError?: () => void;
 }
 
 export function PannellumViewer({
@@ -29,6 +30,7 @@ export function PannellumViewer({
   hfov = 110,
   hotSpots = [],
   onLoad,
+  onError,
 }: PannellumViewerProps) {
   const viewerRef = useRef<HTMLDivElement>(null);
   const viewer = useRef<any>(null);
@@ -50,22 +52,36 @@ export function PannellumViewer({
 
     script.onload = () => {
       if (window.pannellum && viewerRef.current) {
-        viewer.current = window.pannellum.viewer(viewerRef.current, {
-          type: "equirectangular",
-          panorama: image,
-          pitch: pitch,
-          yaw: yaw,
-          hfov: hfov,
-          autoLoad: true,
-          hotSpots: hotSpots.map((spot) => ({
-            ...spot,
-            type: "info",
-          })),
-        });
+        try {
+          viewer.current = window.pannellum.viewer(viewerRef.current, {
+            type: "equirectangular",
+            panorama: image,
+            pitch: pitch,
+            yaw: yaw,
+            hfov: hfov,
+            autoLoad: true,
+            hotSpots: hotSpots.map((spot) => ({
+              ...spot,
+              type: "info",
+            })),
+          });
 
-        if (onLoad) {
-          onLoad();
+          if (onLoad) {
+            onLoad();
+          }
+        } catch (error) {
+          console.error("Error initializing Pannellum viewer:", error);
+          if (onError) {
+            onError();
+          }
         }
+      }
+    };
+
+    script.onerror = () => {
+      console.error("Failed to load Pannellum script");
+      if (onError) {
+        onError();
       }
     };
 
@@ -83,7 +99,7 @@ export function PannellumViewer({
         document.head.removeChild(linkRef.current);
       }
     };
-  }, [image, pitch, yaw, hfov, hotSpots, onLoad]);
+  }, [image, pitch, yaw, hfov, hotSpots, onLoad, onError]);
 
   return <div ref={viewerRef} style={{ width: "100%", height: "100%" }} />;
 }

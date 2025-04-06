@@ -36,8 +36,10 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Hours</h3>
             <p className="text-sm">
-              Hours of Operation: 9:30 am to Sunset every day. <br> <br></br>Available anytime
-              via Facebook Messenger, WhatsApp, and text. Available via phone
+              Hours of Operation: 9:30 am to Sunset every day.
+              <br />
+              <br />
+              Available anytime via Facebook Messenger, WhatsApp, and text. Available via phone
               from 9 am to 8 pm.
             </p>
           </div>

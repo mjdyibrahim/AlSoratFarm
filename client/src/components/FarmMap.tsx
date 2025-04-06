@@ -15,6 +15,7 @@ const FARM_IMAGE_RATIO = 552 / 1626;
 interface FarmMapProps {
   className?: string;
 }
+// Ensure the image path is correct
 const FARM_IMAGE_URL = "/images/AlSoratFarm.jpg";
 
 // Farm areas with their descriptions
@@ -122,6 +123,8 @@ const farmAreas = [
 
 export function FarmMap() {
   const [_, setLocation] = useLocation();
+  const [imageLoaded, setImageLoaded] = React.useState(false);
+  const [imageError, setImageError] = React.useState(false);
 
   const handleAreaClick = (areaId: string) => {
     setLocation(`/virtual-tour?location=${areaId}`);
@@ -137,16 +140,28 @@ export function FarmMap() {
         className="relative w-full aspect-[552/1626] overflow-hidden"
       >
         {/* The actual farm satellite image as a background */}
-        <img
-          src={FARM_IMAGE_URL}
-          alt="Al Sorat Farm Satellite View"
-          className="absolute inset-0 w-full h-full object-cover"
-          onLoad={(e) => console.log('Image loaded:', e.currentTarget.naturalWidth, 'x', e.currentTarget.naturalHeight)}
-          onError={(e) => console.error('Image failed to load:', e)}
-        />
+        {!imageError ? (
+          <img
+            src={FARM_IMAGE_URL}
+            alt="Al Sorat Farm Satellite View"
+            className="absolute inset-0 w-full h-full object-cover"
+            onLoad={(e) => {
+              console.log('Image loaded:', e.currentTarget.naturalWidth, 'x', e.currentTarget.naturalHeight);
+              setImageLoaded(true);
+            }}
+            onError={(e) => {
+              console.error('Image failed to load:', e);
+              setImageError(true);
+            }}
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+            <p className="text-gray-500">Farm map image could not be loaded</p>
+          </div>
+        )}
 
         {/* Now we place the hotspots absolutely on top of the image */}
-        {farmAreas.map((area) => (
+        {imageLoaded && farmAreas.map((area) => (
           <Tooltip key={area.id}>
             <TooltipTrigger asChild>
               <motion.div

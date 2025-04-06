@@ -2,7 +2,7 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Info } from "lucide-react";
+import { ChevronLeft, ChevronRight, Info, AlertCircle } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -79,17 +79,25 @@ export function VirtualTour() {
     : 0;
   const [currentLocationIndex, setCurrentLocationIndex] = React.useState(initialIndex !== -1 ? initialIndex : 0);
   const currentLocation = tourLocations[currentLocationIndex];
+  const [imageError, setImageError] = React.useState(false);
 
   const goToNextLocation = () => {
     setCurrentLocationIndex((prev) => 
       prev === tourLocations.length - 1 ? 0 : prev + 1
     );
+    setImageError(false);
   };
 
   const goToPreviousLocation = () => {
     setCurrentLocationIndex((prev) => 
       prev === 0 ? tourLocations.length - 1 : prev - 1
     );
+    setImageError(false);
+  };
+
+  const handleImageError = () => {
+    console.error(`Failed to load image: ${currentLocation.image}`);
+    setImageError(true);
   };
 
   return (
@@ -124,16 +132,25 @@ export function VirtualTour() {
           </CardHeader>
           <CardContent>
             <div className="relative aspect-[16/9] overflow-hidden rounded-lg">
-              <PannellumViewer
-                image={currentLocation.image}
-                pitch={10}
-                yaw={180}
-                hfov={110}
-                hotSpots={currentLocation.hotspots}
-                onLoad={() => {
-                  console.log("panorama loaded");
-                }}
-              />
+              {!imageError ? (
+                <PannellumViewer
+                  image={currentLocation.image}
+                  pitch={10}
+                  yaw={180}
+                  hfov={110}
+                  hotSpots={currentLocation.hotspots}
+                  onLoad={() => {
+                    console.log("panorama loaded");
+                  }}
+                  onError={handleImageError}
+                />
+              ) : (
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100">
+                  <AlertCircle className="h-12 w-12 text-red-500 mb-4" />
+                  <p className="text-gray-700 mb-2">Failed to load panoramic image</p>
+                  <p className="text-sm text-gray-500">Please try another location or refresh the page</p>
+                </div>
+              )}
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button

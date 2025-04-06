@@ -6,6 +6,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 import { API_BASE_URL } from "@/lib/config";
 
@@ -20,6 +21,7 @@ const formSchema = z.object({
 
 export function ContactForm() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,17 +34,30 @@ export function ContactForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
     try {
+      // Format the data to match the API expectations
+      const contactData = {
+        name: `${values.firstName} ${values.lastName}`,
+        email: values.email,
+        phone: values.phone,
+        subject: "Contact Form Submission",
+        message: values.message,
+      };
+
       const response = await fetch(`${API_BASE_URL}/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify(contactData),
+        // Add credentials to handle CORS properly
+        credentials: "include",
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
@@ -55,9 +70,11 @@ export function ContactForm() {
       console.error("Error submitting form:", error);
       toast({
         title: "Error sending message",
-        description: "Please try again later.",
+        description: error instanceof Error ? error.message : "Please try again later.",
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -100,7 +117,7 @@ export function ContactForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="john@example.com" {...field} />
+                <Input placeholder="john.doe@example.com" type="email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -112,9 +129,9 @@ export function ContactForm() {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Phone Number</FormLabel>
+              <FormLabel>Phone</FormLabel>
               <FormControl>
-                <Input type="tel" placeholder="+20 xxx xxx xxxx" {...field} />
+                <Input placeholder="+20 123 456 7890" type="tel" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -128,14 +145,20 @@ export function ContactForm() {
             <FormItem>
               <FormLabel>Message</FormLabel>
               <FormControl>
-                <Textarea placeholder="Tell us about your interests..." {...field} />
+                <Textarea
+                  placeholder="Tell us about your inquiry..."
+                  className="min-h-[120px]"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit" className="w-full">Send Message</Button>
+        <Button type="submit" className="w-full" disabled={isSubmitting}>
+          {isSubmitting ? "Sending..." : "Send Message"}
+        </Button>
       </form>
     </Form>
   );
