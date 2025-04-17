@@ -18,6 +18,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
+import { useMutation } from "@tanstack/react-query";
+import { API_BASE_URL } from "@/lib/config";
 
 const formSchema = z.object({
   date: z.date({
@@ -28,28 +30,76 @@ const formSchema = z.object({
   children: z.number().min(0, "Number of children cannot be negative."),
   lunchRequired: z.boolean(),
   dietaryRestrictions: z.string().optional(),
+  contactName: z.string().min(1, "Please enter your name."),
+  contactEmail: z.string().email("Please enter a valid email address."),
+  contactPhone: z.string().optional(),
+  specialRequests: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
+
+interface BookingResponse {
+  message: string;
+  data: FormValues & {
+    id: string;
+    status: string;
+    created_at: string;
+    updated_at: string;
+  };
+}
 
 export default function DayuseBooking() {
   const { toast } = useToast();
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      date: new Date(),
+      arrivalTime: "12:00",
       adults: 1,
       children: 0,
       lunchRequired: false,
       dietaryRestrictions: "",
+      contactName: "",
+      contactEmail: "",
+      contactPhone: "",
+      specialRequests: "",
+    },
+  });
+
+  const { mutate: submitBooking, isPending } = useMutation({
+    mutationFn: async (data: FormValues): Promise<BookingResponse> => {
+      const response = await fetch(`${API_BASE_URL}/dayuse`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit booking");
+      }
+
+      return response.json();
+    },
+    onSuccess: (data: BookingResponse) => {
+      toast({
+        title: "Booking submitted!",
+        description: `Your dayuse visit has been scheduled for ${format(form.getValues("date"), "MMMM d, yyyy")}`,
+      });
+      form.reset();
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Error",
+        description: "Failed to submit booking. Please try again.",
+        variant: "destructive",
+      });
     },
   });
 
   const onSubmit = (data: FormValues) => {
-    console.log(data);
-    toast({
-      title: "Booking submitted!",
-      description: `Your dayuse visit has been scheduled for ${format(data.date, "MMMM d, yyyy")}`,
-    });
+    submitBooking(data);
   };
 
   return (
@@ -73,7 +123,7 @@ export default function DayuseBooking() {
                         selected={field.value}
                         onSelect={field.onChange}
                         className="rounded-md border"
-                        disabled={(date) => date < new Date()}
+                        disabled={(date: Date) => date < new Date()}
                       />
                       <FormMessage />
                     </FormItem>
@@ -174,8 +224,73 @@ export default function DayuseBooking() {
                   />
                 )}
 
-                <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
-                  Book Visit
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="contactName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Your Name</FormLabel>
+                        <FormControl>
+                          <Input {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="contactEmail"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email Address</FormLabel>
+                        <FormControl>
+                          <Input type="email" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <FormField
+                  control={form.control}
+                  name="contactPhone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone Number (Optional)</FormLabel>
+                      <FormControl>
+                        <Input type="tel" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="specialRequests"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Special Requests (Optional)</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Any special requests or additional information..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button 
+                  type="submit" 
+                  className="w-full bg-primary hover:bg-primary/90"
+                  disabled={isPending}
+                >
+                  {isPending ? "Submitting..." : "Book Visit"}
                 </Button>
               </form>
             </Form>
@@ -185,3 +300,5 @@ export default function DayuseBooking() {
     </div>
   );
 }
+
+

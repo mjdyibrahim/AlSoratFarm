@@ -17,14 +17,14 @@ const tourLocations = [
     id: "vet-area",
     title: "Veterinary Area",
     description: "Treatment area for animals and veterinary services.",
-    image: "/images/MainHouse_Outdoors_Service.jpeg",
+    image: "/images/rural_initiative_duck_check.jpeg",
     hotspots: [],
   },
   {
     id: "staff-residence",
     title: "Staff Residence",
     description: "Living quarters for farm staff.",
-    image: "/images/MainHouse_Side.jpeg",
+    image: "/images/Driveway_Back_View.jpeg",
     hotspots: [],
   },
   {
@@ -66,7 +66,7 @@ const tourLocations = [
     id: "horse-paddock",
     title: "Horse Paddock",
     description: "Main living area for horses.",
-    image: "/images/Horses_From_Garden.jpeg",
+    image: "/images/horses_sunset.jpeg",
     hotspots: [],
   }
 ];
