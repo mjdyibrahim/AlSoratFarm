@@ -17,7 +17,7 @@ const tourLocations = [
     id: "vet-area",
     title: "Veterinary Area",
     description: "Treatment area for animals and veterinary services.",
-    image: "/images/rural_initiative_duck_check.jpeg",
+    image: "/images/rural_initiative_vet_outdoors.jpeg",
     hotspots: [],
   },
   {
@@ -60,6 +60,13 @@ const tourLocations = [
     title: "Naways HQ",
     description: "Administrative headquarters.",
     image: "/images/NawaysHQ_House.jpeg",
+    hotspots: [],
+  },
+  {
+    id: "horse-round-pen",
+    title: "Round Pen",
+    description: "Round Pen for horse exercise and training.",
+    image: "/images/Horses_Circle_Training_Donkey_Wagon.jpeg",
     hotspots: [],
   },
   {
